@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
   int n,a,b,c,d,ans=0;
-  bool g[100][100]={};
+  bool g[100][100]={};  //全ての要素はfalseで初期化
 
   cin>>n;
   for(int k=0;k<n;k++){
