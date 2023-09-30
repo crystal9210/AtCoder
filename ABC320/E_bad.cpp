@@ -1,5 +1,5 @@
 // 問題文：N人の人が一列に並んでいて先頭から順に1からNまでの番号が割り振られている。ここでM回、時刻Tiに量Wiのそうめんを流す。先頭の人がそのそうめんをゲットし、時刻Ti+Siに列の元の位置に戻る。ただし、誰も列に並んでいない場合、誰もそうめんをGETしない。
-// 題意：M解の出来事がすべて行われたあと、それぞれの人が合計でどれだえそうめんをGET下かを求める。
+// 題意：M解の出来事がすべて行われたあと、それぞれの人が合計でどれだえそうめんをGETしたかを求める。
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i,x) for(int i=0;i<(x);i++)
@@ -15,11 +15,14 @@ int main(){
   vector<int> somen_sum(n,0);
 
   //各試行iに対するパラメータを保持する動的ベクトルの宣言
-  vector<int> W(m),S(m),T(m);
+  vector<int> W(m),S(m),T(m),padding_time(m);
 
   //入力
   rep(i,m){
     cin>>T[i]>>W[i]>>S[i];
+  }
+  rep(i,m-1){
+    padding_time[i+1]=T[i+1]-T[i];
   }
   // rep(i,m)cout<<T[i]<<' '<<W[i]<<' '<<S[i]<<endl;
 
@@ -34,7 +37,7 @@ int main(){
 
     //列に人がいるかどうかを判定
     rep(j, n) {
-      if (re_time[j] <= T[i]-pre_time) {
+      if (re_time[j] <= padding_time[i]) {
         first=j;
         break;  //判定のループを抜ける
       }
@@ -43,7 +46,7 @@ int main(){
     //列の一番前の人のデータの更新と他の人のデータの更新
     rep(j,n){
       if(j!=first && re_time[j]>0){
-        re_time[j] -= (T[i] - pre_time);
+        re_time[j] -= padding_time[i];
         if(re_time[j] < 0) re_time[j] = 0;
       }
     }
