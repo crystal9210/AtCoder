@@ -1,0 +1,12 @@
+§再帰関数generateIncreasingSequencesの内部挙動:
+〇前提条件:
+初期状態:
+sequence=[],last=1
+
+〇具体的なケースに対する挙動の確認;
+n=3,m=3,last=1,空のsequenceを持つ初期の関数呼び出しの想定:
+①sequence.push_back(i);
+→sequence=[1]となる(sequenceに1を追加)
+②再帰呼び出し;generateIncreasingSequences(n,m,i,sequence); i.e. generateIncreasingSequences(3,3,1,[1]);
+→この関数内でsequenceは[1,1],[1,2],[1,3]と変化し、それぞれに対してさらに再帰呼び出しが行われる。
+再帰から戻るとsequenceから最後の要素が削除;sequence=[1]
