@@ -20,8 +20,8 @@ int main(){
   rep(i,0,m){
     int a,b;
     cin>>a>>b;
-    g[a].push(b);
-    g[b].push(a);
+    g[a].push_back(b);
+    g[b].push_back(a);
   }
 
   // 頂点sをスタートとした探索
