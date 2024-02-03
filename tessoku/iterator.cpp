@@ -37,7 +37,7 @@ class Container {
   int size;
 
   Container(int size): size(size),data(new int[size]) {
-    // コンテナの初期化(この形式で普通初期化せんやろw)
+    // コンテナの初期化
     rep(i,0,size){
       data[i]=i;
     }
