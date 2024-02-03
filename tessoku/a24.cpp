@@ -13,6 +13,7 @@ int main(){
   vector<int> a(n),dp(n+1,INF); // dp:LISに用いる動的計画法の配列
   rep(i,0,n)cin>>a[i];
   rep(i,0,n){
+    // 注意:dp.begin()はイテレータであり、値ではない!+イテレータ間の差分は、コンテナの要素数に等しい→下記のようにして算出
     auto idx=lower_bound(dp.begin(),dp.end(),a[i])-dp.begin();
     dp[idx]=a[i];
   }

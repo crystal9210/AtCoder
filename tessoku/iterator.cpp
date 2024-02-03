@@ -52,13 +52,17 @@ class Container {
     return Iterator(*this, 0);
   }
 
+  // コンテナ―の最後の要素の次を指すイテレータを返す；C++での標準ライブラリでのイテレーションの慣習に従い、この終端イテレータはコンテナの要素範囲の外にある
+  // const:end関数がmain関数内でインスタンス名.end()としたときのインスタンスに対し内部的な変更を加えることを不可とすることを意味
   Iterator end() const {
     return Iterator(*this, size);
   }
 };
 
 // クラス間の共依存関係によるコンパイルエラーを避けるため、イテレータクラスの具体的な各関数の処理実装は外部定義
+// const:変更不可
 Iterator::Iterator(const Container& container, int startIndex) : c(container), index(startIndex) {}
+// ☆:参照型メンバ変数、constメンバ変数はそれぞれ初期化リストを使用して初期化しなければならない。コンストラクタの初期化の本体中では不可
 
 Iterator& Iterator::operator++() {
     ++index;
@@ -69,6 +73,7 @@ int Iterator::operator*() const {
     return c.data[index];
 }
 
+// Iteratorクラスの二つのインスタンスが異なる要素を指しているかどうかを判断するためにオーバーロードされた
 bool Iterator::operator!=(const Iterator& other) const {
     return index != other.index;
 }
@@ -88,3 +93,5 @@ int main(){
   return 0;
 
 }
+
+// C++のイテレータがインデックスン最後尾+1までアクセスできる理由:イテレーションの終了条件を表現するため
