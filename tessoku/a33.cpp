@@ -5,6 +5,7 @@ using namespace std;
 typedef long long ll;
 typedef long double lb;
 
+//対称・非対称がどういうことを意味しているか：☆ゴールがすべての石がなくなったとき→先手が対称な状態だと後手が先手が次に取るときに常にxorSum=0となるように取ることで確実に先手の番で0を実現→最後すべての石がなくなった状態で先手の番がくる
 int main(){
   int n;
   cin>>n;
