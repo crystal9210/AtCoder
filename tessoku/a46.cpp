@@ -34,11 +34,13 @@ int main()
   int cur = 0; // cur:current city number
   rep(i, 1, n)
   {
+    // 後の処理の比較ために今いる都市の各データを変数に保持、ループごとにその時の値が反映されるようになっている(再代入される)→処理の性質上必要
     int curx = c[cur].x;
     int cury = c[cur].y;
-    double min_dist = numeric_limits<double>::max(); // 最大値で初期化
-    int next = -1;                                   // next:next city numer
+    double min_dist = numeric_limits<double>::max(); // C++のdouble型の変数が格納できる最大値で初期化(ライブラリの提供機能)
+    int next = -1;                                   // next:next city numbser
 
+    // 未訪問の都市で現在の都市からもっとも距離が近いものを選択し、変数に格納→後続の処理に反映することでロジックを実現
     rep(j, 0, n)
     {
       if (!c[j].is_visited)
