@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+    {
+    "label": "Create Competition Directories and Files",
+    "type": "shell",
+    "command": "mkdir -p a b c d e f g && touch a/a.cpp b/b.cpp c/c.cpp d/d.cpp e/e.cpp f/f.cpp g/g.cpp",
+    "group": {
+    "kind": "build",
+    "isDefault": true
+    },
+    "presentation": {
+    "reveal": "always",
+    "panel": "shared"
+    },
+    "problemMatcher": []
+    },
+    {
+    "label": "Change to Directory",
+    "type": "shell",
+    "command": "cd ${input:directoryName}",
+    "presentation": {
+    "reveal": "always",
+    "panel": "shared"
+    },
+    "problemMatcher": []
+    },
+    {
+    "label": "Create Input Files",
+    "type": "shell",
+    "command": "for i in {1..${input:fileCount}}; do touch ${input:directoryName}/input$i.txt; done",
+    "presentation": {
+    "reveal": "always",
+    "panel": "shared"
+    },
+    "problemMatcher": []
+    }
+    ],
+    "inputs": [
+    {
+    "id": "directoryName",
+    "type": "promptString",
+    "description": "Enter the directory name (a to g)"
+    },
+    {
+    "id": "fileCount",
+    "type": "promptString",
+    "description": "Enter the number of input files to create"
+    }
+    ]
+    }
